@@ -1,4 +1,8 @@
 <script setup>
+    const { data: tarifs } = await useFetch('/api/tarifs', {
+      transform: (tarifs) => tarifs.map((tarif) => ({ ...tarif, quantite: 0 }))
+    })
+  
   const billetsCinema = ref([
     {
       nom: 'Adulte',
@@ -45,12 +49,13 @@
       billet.quantite--
     }
   }
+
 </script>
 
 <template>
   <section class="grid">
     <h2>Billets de cinéma</h2>
-    <CinemaBillet v-for="Billet in billetsCinema" 
+    <CinemaBillet v-for="Billet in tarifs" 
     :key="Billet.nom" 
     :nom="Billet.nom" 
     :prix="Billet.prix" 
@@ -58,14 +63,11 @@
     @ajouter="Billet.quantite++"
     @retirer="retirer(Billet)"
     />
+    <p>Total : {{ total }}</p>
+    <p>Total prix : {{ totalPrix }} € <span v-if="estGroupe">(-10%)</span></p>
+    <p v-if="estGroupe">Tarif de groupe appliqué</p>
+    <p v-else>Pas de tarif de groupe</p>  
   </section>
-  <section class="boutons">
-  <p>Total : {{ total }}</p>
-  <p>Total prix : {{ totalPrix }} € <span v-if="estGroupe">(-10%)</span></p>
-  <p v-if="estGroupe">Tarif de groupe appliqué</p>
-  <p v-else>Pas de tarif de groupe</p>  
-  </section>
-
 </template>
 
 <style scoped>

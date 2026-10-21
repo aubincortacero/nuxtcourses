@@ -1,4 +1,7 @@
 <template>
-  <h1>À propos</h1>
+  <section>
+    <h1>À propos</h1>
   <NuxtLink to="/">Retour</NuxtLink>
+  </section>
+  
 </template>

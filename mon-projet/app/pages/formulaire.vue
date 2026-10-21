@@ -17,10 +17,13 @@ const statut = computed(() => {
 </script>
 
 <template>
-  <input v-model="prenom" placeholder="Votre prénom" />
-  <input type="number" v-model="age" placeholder="Votre âge" />
-  <p v-if="prenom">Bonjour {{ prenom }}, vous avez {{ age }} ans</p>
-  <p v-else>Veuillez entrer votre prénom et votre âge</p>
-<p v-if="prenom">Vous êtes {{ statut }}</p>
-  <button @click="prenom = ''; age = 0">Effacer</button>
+  <section>
+     <input v-model="prenom" placeholder="Votre prénom" />
+    <input type="number" v-model="age" placeholder="Votre âge" />
+    <p v-if="prenom">Bonjour {{ prenom }}, vous avez {{ age }} ans</p>
+    <p v-else>Veuillez entrer votre prénom et votre âge</p>
+    <p v-if="prenom">Vous êtes {{ statut }}</p>
+    <button @click="prenom = ''; age = 0">Effacer</button>
+  </section>
+ 
 </template>
